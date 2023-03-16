@@ -1,12 +1,20 @@
 import { reactive } from 'vue';
 
 export const store = reactive({
-  players: [
-    { name: 'Poncho', position: 0, color: 'blue' },
-    { name: 'Xime', position: 0, color: 'red' },
-    { name: 'Moni', position: 0, color: 'yellow' },
-  ],
-  availableColors: [],
+  players: [],
+  availableColors: ["red",
+    "green",
+    "darkorange",
+    "cyan",
+    "magenta",
+    "khaki",
+    "black",
+    "gold",
+    "indigo",
+    "tomato",
+    "dodgerblue",],
+  newPlayer: '',
+  isStarted: false,
   diceOne: 0,
   diceTwo: 0,
   squares: 0,
@@ -14,6 +22,7 @@ export const store = reactive({
   isRollDisabled: false,
   isDouble: false,
   currentPlayerIndex: 0,
+  squares: [],
   get currentPlayer() {
     return this.players[this.currentPlayerIndex];
   },
@@ -43,8 +52,24 @@ export const store = reactive({
     }
   },
   setupGame() {
-    for (let step = 100; step > 0; step--) {
-      this.squares.push(step);
-    }
+    this.isStarted = true;
+    this.players.forEach((player) => {
+      player.position = 0;
+    });
   },
+  exitGame() {
+    this.isStarted = false;
+  },
+  addPlayer() {
+    this.players.push({
+      name: this.newPlayer,
+      position: 0,
+      color: this.availableColors.pop(),
+    });
+    this.newPlayer = '';
+  },
+  removePlayer(player) {
+    this.players = this.players.filter((p) => p !== player);
+    this.availableColors.push(player.color);
+  }
 });

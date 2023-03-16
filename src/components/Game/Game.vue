@@ -40,6 +40,7 @@ export default {
       <Board />
     </div>
   </div>
+  <button @click="store.exitGame">Exit</button>
 </template>
 
 <style>
