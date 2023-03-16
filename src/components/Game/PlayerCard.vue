@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div class="player-card">
-    <div class="player-chip" :style="{ borderColor: player.color }"></div>
+    <div class="player-chip" :style="{ backgroundColor: player.color }"></div>
     <div class="status">
       <h2>{{ player.name }}</h2>
       <h3>Position: {{ player.position }}</h3>
@@ -36,11 +36,10 @@ export default {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 8px double;
+  border: 15px double black;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   margin-left: 10px;
-  background-color: gray;
 }
 
 .status {
