@@ -34,7 +34,7 @@ export default {
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    border: 8px double;
+    border: 10px double;
     background-color: #ccc;
     display: flex;
     justify-content: center;

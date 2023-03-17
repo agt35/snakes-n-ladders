@@ -26,7 +26,7 @@ export default {
     <div class="header">
         <font-awesome-icon icon="fa-solid fa-gamepad" class="icon" />
         <h1>Welcome to Snakes-n-Ladders</h1>
-        <h4>To setup the game add the players below</h4>
+        <h3>To setup the game add the players below</h3>
     </div>
     <div id="setup">
         <div class="add-form">
@@ -42,7 +42,7 @@ export default {
     </div>
 </template>
 
-<style>
+<style scoped>
 #setup {
     width: 500px;
 }
@@ -53,7 +53,7 @@ export default {
     align-items: center;
 }
 
-h4 {
+h3 {
     color: dodgerblue;
 }
 
@@ -66,6 +66,11 @@ h4 {
 
 input {
     font-size: 1.8em;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid yellowgreen;
 }
 
 form {
