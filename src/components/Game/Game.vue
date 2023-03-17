@@ -2,13 +2,18 @@
 import PlayerCard from './PlayerCard.vue';
 import Dice from './Dice.vue';
 import Board from './Board.vue';
+import PlayerStandings from './PlayerStandings.vue';
+import Modal from './Modal.vue';
 
 import { store } from '../../store.js';
+
 export default {
   components: {
     PlayerCard,
     Dice,
     Board,
+    PlayerStandings,
+    Modal,
   },
   data() {
     return {
@@ -19,6 +24,7 @@ export default {
 </script>
 
 <template>
+  <Modal />
   <font-awesome-icon icon="fa-solid fa-gamepad" class="icon" />
   <div id="game">
     <div class="info-container">
@@ -38,6 +44,9 @@ export default {
     </div>
     <div>
       <Board />
+    </div>
+    <div>
+      <PlayerStandings />
     </div>
   </div>
   <button @click="store.exitGame">Exit</button>
@@ -64,6 +73,6 @@ h2 {
 }
 
 .alert {
-  color: maroon;
+  color: rgb(131, 27, 27);
 }
 </style>
