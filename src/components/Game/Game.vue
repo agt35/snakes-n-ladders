@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <Modal />
+  <Modal v-if="store.showModal" />
   <font-awesome-icon icon="fa-solid fa-gamepad" class="icon" />
   <div id="game">
     <div class="info-container">
@@ -38,7 +38,7 @@ export default {
       <button @click="store.rollDice" :disabled="store.isRollDisabled">
         Roll dice
       </button>
-      <button @click="store.takeTurn" :disabled="store.isNextDisabled">
+      <button @click="store.finishTurn" :disabled="store.isNextDisabled">
         Next Player
       </button>
     </div>
@@ -69,7 +69,7 @@ h2 {
 .icon {
   width: 120px;
   height: 80px;
-  color: midnightblue;
+  color: #71a5de;
 }
 
 .alert {

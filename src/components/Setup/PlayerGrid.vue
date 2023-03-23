@@ -35,7 +35,7 @@ export default {
     height: 75px;
     border-radius: 50%;
     border: 10px double;
-    background-color: #ccc;
+    background-color: #f6f2f0;
     display: flex;
     justify-content: center;
     align-items: center;

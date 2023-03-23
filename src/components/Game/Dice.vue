@@ -17,7 +17,6 @@ export default {
       store,
     };
   },
-  props: ['takeTurns'],
   computed: {
     diceOneIcon() {
       switch (store.diceOne) {
@@ -76,12 +75,12 @@ export default {
 .dice {
   width: 110px;
   height: 110px;
-  color: navy;
+  color: #71a5de;
 }
 
 .dice-container {
   border: 1px solid rgba(32, 32, 32, 0.87);
-  background-color: lightgray;
+  background-color: #f6f2f0;
   border-radius: 10px;
   margin: 10px auto;
   display: flex;

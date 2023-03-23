@@ -30,7 +30,7 @@ export default {
     flex-direction: column;
     align-items: center;
     margin: 0 10px;
-    background-color: lightgray;
+    background-color: #f6f2f0;
     border-radius: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -52,7 +52,7 @@ h2 {
     height: 50px;
     margin: 5px;
     border-radius: 50%;
-    border: 8px double black;
+    border: 8px double #edede9;
     display: flex;
     justify-content: center;
     align-items: center;

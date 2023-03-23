@@ -54,7 +54,7 @@ export default {
 }
 
 h3 {
-    color: dodgerblue;
+    color: #5d7bd5;
 }
 
 .add-form {
@@ -66,16 +66,17 @@ h3 {
 
 input {
     font-size: 1.8em;
+    background-color: #d6ccc2;
 }
 
 input:focus {
     outline: none;
-    border: 2px solid yellowgreen;
+    border: 2px solid #8093f1;
 }
 
 form {
     border: 2px solid black;
-    background-color: rgb(96, 96, 96);
+    background-color: #d6ccc2;
     padding: 10px;
     border-radius: 5px;
 }

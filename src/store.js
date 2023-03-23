@@ -2,40 +2,45 @@ import { reactive } from 'vue';
 
 export const store = reactive({
   players: [],
-  availableColors: ["red",
-    "green",
-    "darkorange",
-    "cyan",
-    "magenta",
-    "khaki",
-    "black",
-    "gold",
-    "indigo",
-    "tomato",
-    "dodgerblue",],
+  availableColors: ["#ff99c8",
+    "#7fc8f8",
+    "#96d289",
+    "#c5a3ff",
+    "#ffd670",
+    "#ffa69e",],
   newPlayer: '',
+  showModal: false,
   isStarted: false,
+  isOver: false,
   diceOne: 0,
   diceTwo: 0,
+  diceModalOne: 0,
+  diceModalTwo: 0,
   squares: 0,
   isNextDisabled: true,
   isRollDisabled: false,
   isDouble: false,
   currentPlayerIndex: 0,
   squares: [],
+  stairs: [25, 43, 56, 69, 72, 3],
+  snakes: [99, 38, 57, 88, 64, 92],
+  specials: [75, 31],
   get currentPlayer() {
     return this.players[this.currentPlayerIndex];
   },
   get nextPlayer() {
     return this.players[(this.currentPlayerIndex + 1) % this.players.length];
   },
-  takeTurn() {
+  finishTurn() {
     this.currentPlayerIndex =
       (this.currentPlayerIndex + 1) % this.players.length;
     this.isNextDisabled = true;
     this.isRollDisabled = false;
     this.diceOne = 0;
     this.diceTwo = 0;
+    if (this.currentPlayer.position >= 100) {
+      this.isStarted = false;
+    };
   },
   rollDice() {
     this.diceOne = Math.floor(Math.random() * 6) + 1;
@@ -44,8 +49,16 @@ export const store = reactive({
     if (this.diceOne === this.diceTwo) {
       this.isDouble = true;
       this.currentPlayer.position += this.diceOne + this.diceTwo;
+      if (this.currentPlayer.position >= 100) {
+        this.showModal = true;
+        this.isOver = true;
+      }
     } else {
       this.currentPlayer.position += this.diceOne + this.diceTwo;
+      if (this.currentPlayer.position >= 100) {
+        this.showModal = true;
+        this.isOver = true;
+      }
       this.isDouble = false;
       this.isNextDisabled = false;
       this.isRollDisabled = true;
@@ -59,6 +72,7 @@ export const store = reactive({
   },
   exitGame() {
     this.isStarted = false;
+    this.showModal = false;
   },
   addPlayer() {
     this.players.push({

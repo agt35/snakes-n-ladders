@@ -34,6 +34,6 @@ export default {
   display: flex;
   justify-content: center;
   margin-left: 10px;
-  background-color: lightgray;
+  background-color: #f6f2f0;
 }
 </style>
