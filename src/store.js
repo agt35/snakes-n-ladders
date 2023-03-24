@@ -11,9 +11,11 @@ export const store = reactive({
   newPlayer: '',
   showModal: false,
   isStarted: false,
+  isInstructions: false,
   isOver: false,
   diceOne: 0,
   diceTwo: 0,
+  isInstructions: false,
   diceModalOne: 0,
   diceModalTwo: 0,
   squares: 0,
@@ -31,21 +33,26 @@ export const store = reactive({
   get nextPlayer() {
     return this.players[(this.currentPlayerIndex + 1) % this.players.length];
   },
-  finishTurn() {
-    this.currentPlayerIndex =
-      (this.currentPlayerIndex + 1) % this.players.length;
+  nextTurn() {
+    this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.length;
     this.isNextDisabled = true;
     this.isRollDisabled = false;
     this.diceOne = 0;
     this.diceTwo = 0;
-    if (this.currentPlayer.position >= 100) {
-      this.isStarted = false;
-    };
+  },
+  showInstructions() {
+    this.showModal = true;
+    this.isInstructions = true;
+  },
+  closeInstructions() {
+    this.showModal = false;
+    this.isInstructions = false;
   },
   rollDice() {
     this.diceOne = Math.floor(Math.random() * 6) + 1;
     this.diceTwo = Math.floor(Math.random() * 6) + 1;
     console.log('Rolling');
+    this.logPositions();
     if (this.diceOne === this.diceTwo) {
       this.isDouble = true;
       this.currentPlayer.position += this.diceOne + this.diceTwo;
@@ -64,11 +71,17 @@ export const store = reactive({
       this.isRollDisabled = true;
     }
   },
+  logPositions() {
+    this.players.forEach((player) => {
+      console.log(player.name + ' is at ' + player.position);
+    });
+  },
   setupGame() {
     this.isStarted = true;
     this.players.forEach((player) => {
       player.position = 0;
     });
+    this.currentPlayerIndex = 0;
   },
   exitGame() {
     this.isStarted = false;

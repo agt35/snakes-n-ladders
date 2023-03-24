@@ -52,7 +52,7 @@ h2 {
     height: 50px;
     margin: 5px;
     border-radius: 50%;
-    border: 8px double #edede9;
+    border: 8px double #fff;
     display: flex;
     justify-content: center;
     align-items: center;

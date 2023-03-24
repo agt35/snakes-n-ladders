@@ -66,17 +66,21 @@ h3 {
 
 input {
     font-size: 1.8em;
-    background-color: #d6ccc2;
+    background-color: #f6f2f0;
+    outline: none;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
 }
 
 input:focus {
     outline: none;
-    border: 2px solid #8093f1;
 }
 
 form {
-    border: 2px solid black;
-    background-color: #d6ccc2;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #f6f2f0;
     padding: 10px;
     border-radius: 5px;
 }

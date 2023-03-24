@@ -40,7 +40,8 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 0.8rem;
-    box-shadow: -2px 2px 10px black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .btn-small {

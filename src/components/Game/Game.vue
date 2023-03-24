@@ -38,7 +38,7 @@ export default {
       <button @click="store.rollDice" :disabled="store.isRollDisabled">
         Roll dice
       </button>
-      <button @click="store.finishTurn" :disabled="store.isNextDisabled">
+      <button @click="store.nextTurn" :disabled="store.isNextDisabled">
         Next Player
       </button>
     </div>
@@ -50,12 +50,15 @@ export default {
     </div>
   </div>
   <button @click="store.exitGame">Exit</button>
+  <button @click="store.showInstructions">View Instructions</button>
 </template>
 
 <style>
 #game {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .info-container {

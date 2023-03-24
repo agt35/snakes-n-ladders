@@ -55,12 +55,6 @@ export default {
       }
     },
   },
-  methods: {
-    rollDice() {
-      this.diceOne = Math.floor(Math.random() * 6) + 1;
-      this.diceTwo = Math.floor(Math.random() * 6) + 1;
-    },
-  },
 };
 </script>
 
@@ -79,7 +73,6 @@ export default {
 }
 
 .dice-container {
-  border: 1px solid rgba(32, 32, 32, 0.87);
   background-color: #f6f2f0;
   border-radius: 10px;
   margin: 10px auto;
