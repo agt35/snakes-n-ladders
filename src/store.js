@@ -47,33 +47,37 @@ export const store = reactive({
     this.showModal = false;
     this.isInstructions = false;
   },
-  closeSpecial() {
-    this.showModal = false;
-    this.isSpecial = false;
-    this.specialCase = '';
-  },
   rollModalDice() {
+    this.logPositions();
     this.diceModalOne = Math.floor(Math.random() * 6) + 1;
     this.diceModalTwo = Math.floor(Math.random() * 6) + 1;
+    const spaces = this.diceModalOne * this.diceModalTwo;
+    console.log(spaces)
+    switch (this.specialCase) {
+      case 'stair':
+        this.players[this.currentPlayerIndex].position += spaces;
+      case 'snake':
+        this.players[this.currentPlayerIndex].position -= spaces;
+      case 'special':
+        this.players.forEach((player) => {
+          if (player.name !== this.players[this.currentPlayerIndex].name) {
+            player.position -= spaces;
+          }
+        });
+    }
+    this.logPositions();
+  },
+  closeModalDice() {
+    this.specialCase = '';
+    this.isSpecial = false;
+    this.showModal = false;
+    this.diceModalOne = 0;
+    this.diceModalTwo = 0;
   },
   rollDice() {
     this.diceOne = Math.floor(Math.random() * 6) + 1;
     this.diceTwo = Math.floor(Math.random() * 6) + 1;
     this.players[this.currentPlayerIndex].position += this.diceOne + this.diceTwo;
-
-    if (this.stairs.includes(this.currentPlayer.position)) {
-      this.isSpecial = true;
-      this.specialCase = 'stair';
-      this.showModal = true;
-    } else if (this.snakes.includes(this.currentPlayer.position)) {
-      this.isSpecial = true;
-      this.specialCase = 'snake';
-      this.showModal = true;
-    } else if (this.specials.includes(this.currentPlayer.position)) {
-      this.isSpecial = true;
-      this.specialCase = 'special';
-      this.showModal = true;
-    }
 
     if (this.currentPlayer.position >= 100) {
       this.showModal = true;
@@ -87,6 +91,19 @@ export const store = reactive({
       this.isDouble = false;
       this.isNextDisabled = false;
       this.isRollDisabled = true;
+    }
+    if (this.stairs.includes(this.currentPlayer.position)) {
+      this.isSpecial = true;
+      this.specialCase = 'stair';
+      this.showModal = true;
+    } else if (this.snakes.includes(this.currentPlayer.position)) {
+      this.isSpecial = true;
+      this.specialCase = 'snake';
+      this.showModal = true;
+    } else if (this.specials.includes(this.currentPlayer.position)) {
+      this.isSpecial = true;
+      this.specialCase = 'special';
+      this.showModal = true;
     }
   },
   logPositions() {

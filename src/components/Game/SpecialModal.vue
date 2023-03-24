@@ -46,7 +46,7 @@ export default {
         <h2>{{ msg2 }}</h2>
         <Dice :isModal="true" />
         <button @click="store.rollModalDice">Roll dice</button>
-        <button @click="store.closeSpecial">Close</button>
+        <button @click="store.closeModalDice">Close</button>
     </div>
 </template>
 

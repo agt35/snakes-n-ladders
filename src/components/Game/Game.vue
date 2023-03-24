@@ -24,7 +24,9 @@ export default {
 </script>
 
 <template>
-  <Modal v-if="store.showModal" />
+  <Transition name="fade">
+    <Modal v-if="store.showModal" />
+  </Transition>
   <font-awesome-icon icon="fa-solid fa-gamepad" class="icon" />
   <div id="game">
     <div class="info-container">
