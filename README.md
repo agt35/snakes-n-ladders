@@ -17,5 +17,5 @@ If values of dice match, player will roll again
 Reach position 100 to win
 
 ## Setup the app
-After cloning repo, run npm install to get all dependencies
-To run game, use npm run dev
+After cloning repo, run `npm install` to get all dependencies
+To run game, use `npm run dev`
