@@ -17,9 +17,13 @@ export default {
       store,
     };
   },
+  props: {
+    isModal: Boolean,
+  },
   computed: {
     diceOneIcon() {
-      switch (store.diceOne) {
+      const diceOne = this.isModal ? store.diceModalOne : store.diceOne;
+      switch (diceOne) {
         case 1:
           return faDiceOne;
         case 2:
@@ -37,7 +41,8 @@ export default {
       }
     },
     diceTwoIcon() {
-      switch (store.diceTwo) {
+      const diceTwo = this.isModal ? store.diceModalTwo : store.diceTwo;
+      switch (diceTwo) {
         case 1:
           return faDiceOne;
         case 2:

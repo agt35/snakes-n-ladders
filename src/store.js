@@ -9,22 +9,21 @@ export const store = reactive({
     "#ffd670",
     "#ffa69e",],
   newPlayer: '',
-  showModal: false,
-  isStarted: false,
-  isInstructions: false,
-  isOver: false,
   diceOne: 0,
   diceTwo: 0,
-  isInstructions: false,
   diceModalOne: 0,
   diceModalTwo: 0,
-  squares: 0,
+  showModal: false,
+  isStarted: false,
+  isSpecial: false,
+  specialCase: '',
+  isOver: false,
+  isInstructions: false,
   isNextDisabled: true,
   isRollDisabled: false,
   isDouble: false,
   currentPlayerIndex: 0,
-  squares: [],
-  stairs: [25, 43, 56, 69, 72, 3],
+  stairs: [25, 43, 56, 69, 49, 3],
   snakes: [99, 38, 57, 88, 64, 92],
   specials: [75, 31],
   get currentPlayer() {
@@ -48,24 +47,43 @@ export const store = reactive({
     this.showModal = false;
     this.isInstructions = false;
   },
+  closeSpecial() {
+    this.showModal = false;
+    this.isSpecial = false;
+    this.specialCase = '';
+  },
+  rollModalDice() {
+    this.diceModalOne = Math.floor(Math.random() * 6) + 1;
+    this.diceModalTwo = Math.floor(Math.random() * 6) + 1;
+  },
   rollDice() {
     this.diceOne = Math.floor(Math.random() * 6) + 1;
     this.diceTwo = Math.floor(Math.random() * 6) + 1;
-    console.log('Rolling');
-    this.logPositions();
+    this.players[this.currentPlayerIndex].position += this.diceOne + this.diceTwo;
+
+    if (this.stairs.includes(this.currentPlayer.position)) {
+      this.isSpecial = true;
+      this.specialCase = 'stair';
+      this.showModal = true;
+    } else if (this.snakes.includes(this.currentPlayer.position)) {
+      this.isSpecial = true;
+      this.specialCase = 'snake';
+      this.showModal = true;
+    } else if (this.specials.includes(this.currentPlayer.position)) {
+      this.isSpecial = true;
+      this.specialCase = 'special';
+      this.showModal = true;
+    }
+
+    if (this.currentPlayer.position >= 100) {
+      this.showModal = true;
+      this.isOver = true;
+      this.isInstructions = false;
+    }
     if (this.diceOne === this.diceTwo) {
       this.isDouble = true;
-      this.currentPlayer.position += this.diceOne + this.diceTwo;
-      if (this.currentPlayer.position >= 100) {
-        this.showModal = true;
-        this.isOver = true;
-      }
+
     } else {
-      this.currentPlayer.position += this.diceOne + this.diceTwo;
-      if (this.currentPlayer.position >= 100) {
-        this.showModal = true;
-        this.isOver = true;
-      }
       this.isDouble = false;
       this.isNextDisabled = false;
       this.isRollDisabled = true;
@@ -75,9 +93,12 @@ export const store = reactive({
     this.players.forEach((player) => {
       console.log(player.name + ' is at ' + player.position);
     });
+    console.log(this.currentPlayer);
   },
   setupGame() {
     this.isStarted = true;
+    this.isNextDisabled = true;
+    this.isRollDisabled = false;
     this.players.forEach((player) => {
       player.position = 0;
     });

@@ -1,12 +1,14 @@
 <script>
 import Dice from './Dice.vue';
 import Instructions from './Instructions.vue';
+import SpecialModal from './SpecialModal.vue';
 import { store } from '../../store.js';
 
 export default {
     components: {
         Dice,
         Instructions,
+        SpecialModal
     },
     data() {
         return {
@@ -19,24 +21,15 @@ export default {
 <template>
     <div class="modal-overlay">
         <div class="modal">
-            <!-- <div v-if="store.isOver" class="winner-announcement">
-                                    <h1>Winner!</h1>
-                                    <h2 :style="{ color: this.store.currentPlayer.color }">
-                                        {{ store.currentPlayer.name }} has reached the goal
-                                    </h2>
-                                    <button @click="store.exitGame">Exit Game</button>
-                                </div>
-                                <div>
-                                    <h1>You landed on a snake!!</h1>
-                                    <h2>Roll the dice to see how far you will drop</h2>
-                                </div>
-                                <div>
-                                    <h1>You landed on stairs!!</h1>
-                                    <h2>Roll the dice to see how far you will climb</h2>
-                                </div>
-                                <h1>This is modal</h1> -->
-            <!-- <Dice /> -->
-            <Instructions v-if="store.showInstructions" />
+            <div v-if="store.isOver" class="winner-announcement">
+                <h1>Winner!</h1>
+                <h2 :style="{ color: this.store.currentPlayer.color }" class="notice">
+                    {{ store.currentPlayer.name }} has reached the goal
+                </h2>
+                <button @click="store.exitGame">Exit Game</button>
+            </div>
+            <SpecialModal v-if="store.isSpecial" />
+            <Instructions v-if="store.isInstructions" />
         </div>
     </div>
 </template>
@@ -59,6 +52,10 @@ export default {
     text-align: center;
     background-color: white;
     width: 500px;
+}
+
+.notice {
+    text-align: center;
 }
 
 .winner-announcement {
