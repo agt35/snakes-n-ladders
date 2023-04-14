@@ -65,6 +65,7 @@ export const store = reactive({
           }
         });
     }
+    this.specialCase = '';
     this.logPositions();
   },
   closeModalDice() {
